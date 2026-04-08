@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TM Performance — Consulting Football d'Élite. Audit stratégique et restructuration opérationnelle pour fédérations nationales et clubs professionnels.">
+<meta property="og:title" content="TM Performance — Football Consulting">
+<meta property="og:description" content="Restructurer. Élever. Dominer. Consulting d'élite pour fédérations et clubs professionnels.">
+<meta property="og:type" content="website">
+<title>TM Performance — Football Consulting</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   RESET & TOKENS
+═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  /* Palette 1 — Nuit / Sable / Pierre */
+  --noir:       #0A0A0A;
+  --charbon:    #111111;
+  --anthracite: #1A1A1A;
+  --pierre:     #6B6560;
+  --sable:      #E8E0D0;
+  --sable-dim:  rgba(232,224,208,0.08);
+  --blanc:      #FAFAF8;
+  --line:       rgba(232,224,208,0.07);
+  --line-mid:   rgba(232,224,208,0.12);
+  --text-body:  rgba(232,224,208,0.5);
+  --text-muted: rgba(232,224,208,0.25);
+}
+
+body {
+  background: var(--noir);
+  color: var(--sable);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  padding: 1.8rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: padding 0.5s ease, background 0.5s ease, border-color 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+#nav.scrolled {
+  padding: 1.1rem 4rem;
+  background: rgba(10,10,10,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom-color: var(--line);
+}
+
+/* Logo TM */
+.nav-logo {
+  display: flex; align-items: baseline; gap: 0;
+  color: var(--sable);
+}
+.logo-tm {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.9rem; letter-spacing: 0.04em; line-height: 1;
+  color: var(--sable);
+}
+.logo-sep {
+  width: 1px; height: 22px;
+  background: var(--pierre);
+  margin: 0 0.9rem; align-self: center; opacity: 0.5;
+}
+.logo-wordmark {
+  display: flex; flex-direction: column; gap: 0; justify-content: center;
+}
+.logo-perf {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--sable); line-height: 1;
+}
+.logo-sub {
+  font-size: 0.48rem; font-weight: 600; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--pierre); line-height: 1;
+  margin-top: 0.25rem;
+}
+
+.nav-links {
+  display: flex; gap: 3rem; list-style: none;
+}
+.nav-links a {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--pierre);
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--sable); }
+
+.nav-cta {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--noir); background: var(--sable);
+  padding: 0.75rem 2rem;
+  transition: background 0.3s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--blanc); transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO — full screen
+═══════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  height: 100vh; min-height: 720px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 25%;
+  animation: heroZoom 18s ease-out forwards;
+  filter: brightness(0.55) saturate(0.8) contrast(1.05);
+}
+@keyframes heroZoom {
+  from { transform: scale(1.07); }
+  to   { transform: scale(1.00); }
+}
+
+/* Overlays — gradient dense en bas */
+.hero-gradient {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(to top,  rgba(10,10,10,1) 0%, rgba(10,10,10,0.7) 25%, rgba(10,10,10,0.15) 55%, transparent 100%),
+    linear-gradient(to right, rgba(10,10,10,0.4) 0%, transparent 65%);
+}
+
+/* Grain subtil */
+.hero-grain {
+  position: absolute; inset: 0; z-index: 2; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 128px 128px;
+  pointer-events: none;
+}
+
+/* Contenu hero */
+.hero-content {
+  position: relative; z-index: 5;
+  padding: 0 4rem 5.5rem;
+  max-width: 1100px;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.38em;
+  text-transform: uppercase; color: var(--pierre);
+  margin-bottom: 2rem;
+  animation: fadeUp 1.2s 0.1s both;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--pierre);
+}
+
+.hero-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 10vw, 11rem);
+  line-height: 0.88; letter-spacing: 0.015em;
+  color: var(--sable);
+  animation: fadeUp 1.2s 0.25s both;
+}
+.hero-h1 .outline {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(232,224,208,0.18);
+}
+
+.hero-sub {
+  font-size: 1rem; font-weight: 300; line-height: 1.85;
+  color: var(--text-body); max-width: 52ch;
+  margin-top: 2.5rem;
+  animation: fadeUp 1.2s 0.4s both;
+}
+
+.hero-actions {
+  display: flex; align-items: center; gap: 2.5rem;
+  margin-top: 3.5rem;
+  animation: fadeUp 1.2s 0.55s both;
+}
+.btn-primary {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--noir); background: var(--sable);
+  padding: 1.15rem 3rem; display: inline-block;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--blanc); transform: translateY(-2px); }
+.btn-secondary {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--pierre);
+  display: flex; align-items: center; gap: 0.8rem;
+  transition: color 0.3s;
+}
+.btn-secondary::after { content: '↓'; font-size: 1rem; }
+.btn-secondary:hover { color: var(--sable); }
+
+/* Scroll indicator */
+.hero-scroll-hint {
+  position: absolute; right: 4rem; bottom: 4rem; z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  animation: fadeIn 2s 1.2s both;
+}
+.hero-scroll-hint span {
+  font-size: 0.55rem; font-weight: 700; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--pierre);
+  writing-mode: vertical-rl;
+}
+.scroll-line {
+  width: 1px; height: 64px;
+  background: linear-gradient(to bottom, var(--pierre), transparent);
+  animation: scrollPulse 2.5s 2s infinite;
+}
+@keyframes scrollPulse {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATEMENT BAR — phrase manifeste
+═══════════════════════════════════════════════════════════ */
+.statement {
+  background: var(--anthracite);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 4rem;
+}
+.statement-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 5rem;
+}
+.statement-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+  letter-spacing: 0.03em; line-height: 1.1;
+  color: var(--sable); max-width: 28ch;
+}
+.statement-text .dim {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232,224,208,0.2);
+}
+.statement-stats {
+  display: flex; gap: 4rem; flex-shrink: 0;
+}
+.sstat {}
+.sstat-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem; line-height: 1; color: var(--sable);
+}
+.sstat-l {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--pierre);
+  margin-top: 0.3rem; max-width: 14ch;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TARGETS MARQUEE
+═══════════════════════════════════════════════════════════ */
+.targets-wrap {
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: var(--charbon);
+}
+.targets-track {
+  display: flex; white-space: nowrap;
+  animation: marquee 24s linear infinite;
+}
+.targets-track:hover { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.t-item {
+  display: inline-flex; align-items: center; gap: 1.5rem;
+  padding: 1.8rem 3rem;
+  border-right: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.t-flag { font-size: 1.4rem; }
+.t-name {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--pierre);
+  white-space: nowrap;
+}
+.t-name strong { color: var(--sable); display: block; }
+
+/* ═══════════════════════════════════════════════════════════
+   SECTIONS — utilitaires
+═══════════════════════════════════════════════════════════ */
+.section { padding: 8rem 4rem; }
+.section-inner { max-width: 1400px; margin: 0 auto; }
+
+.eyebrow {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.38em;
+  text-transform: uppercase; color: var(--pierre);
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+}
+.eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--pierre); }
+
+.title-xl {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5.5vw, 6rem);
+  letter-spacing: 0.02em; line-height: 0.92;
+  color: var(--sable);
+}
+.title-xl .dim {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(232,224,208,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VISION — intro éditoriale
+═══════════════════════════════════════════════════════════ */
+.vision { background: var(--noir); }
+.vision-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8rem; align-items: center;
+}
+.vision-text p {
+  font-size: 1rem; line-height: 1.95; color: var(--text-body);
+  margin-top: 2.5rem;
+}
+.vision-text p strong { color: var(--sable); font-weight: 600; }
+.vision-img {
+  position: relative; overflow: hidden;
+  height: 580px;
+}
+.vision-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  filter: brightness(0.7) saturate(0.75) contrast(1.08);
+  transition: transform 1s ease;
+}
+.vision-img:hover img { transform: scale(1.04); }
+/* Numéro fantôme */
+.vision-img::after {
+  content: '01';
+  position: absolute; bottom: 1.5rem; right: 2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 7rem; line-height: 1;
+  color: rgba(232,224,208,0.05); pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICES — 2 phases
+═══════════════════════════════════════════════════════════ */
+.services { background: var(--charbon); }
+.phases {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--line);
+  margin-top: 5rem;
+}
+.phase {
+  background: var(--charbon); padding: 4.5rem 3.5rem;
+  position: relative; overflow: hidden;
+  transition: background 0.4s;
+}
+.phase:hover { background: var(--anthracite); }
+.phase::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--sable);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s ease;
+}
+.phase:hover::before { transform: scaleX(1); }
+.phase-ghost-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8rem; color: rgba(232,224,208,0.03);
+  line-height: 1; position: absolute;
+  top: 1.5rem; right: 2rem; pointer-events: none;
+}
+.phase-tag {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--pierre); margin-bottom: 1.5rem;
+}
+.phase h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem; letter-spacing: 0.03em;
+  color: var(--sable); margin-bottom: 2rem; line-height: 1;
+}
+.phase p {
+  font-size: 0.92rem; line-height: 1.9; color: var(--text-body);
+  margin-bottom: 2.5rem; max-width: 52ch;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tag {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--pierre);
+  border: 1px solid rgba(232,224,208,0.1);
+  padding: 0.38rem 0.9rem;
+  transition: color 0.3s, border-color 0.3s;
+}
+.phase:hover .tag { color: rgba(232,224,208,0.65); border-color: rgba(232,224,208,0.2); }
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE FULL BLEED
+═══════════════════════════════════════════════════════════ */
+.full-bleed {
+  position: relative; height: 62vh; overflow: hidden;
+}
+.full-bleed img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 35%;
+  filter: brightness(0.45) saturate(0.7) contrast(1.1);
+}
+.full-bleed-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.3) 60%, transparent 100%);
+  display: flex; align-items: center; padding: 0 4rem;
+}
+.full-bleed-quote {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 5.5rem);
+  letter-spacing: 0.02em; line-height: 0.96;
+  color: var(--sable); max-width: 20ch;
+}
+.full-bleed-quote .dim {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(232,224,208,0.25);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AUDIT — 4 cellules
+═══════════════════════════════════════════════════════════ */
+.audit { background: var(--noir); }
+.audit-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--line);
+  margin-top: 5rem;
+}
+.audit-cell {
+  background: var(--noir); padding: 3rem 2.2rem;
+  transition: background 0.35s;
+}
+.audit-cell:hover { background: var(--charbon); }
+.audit-cell-icon { font-size: 1.3rem; margin-bottom: 1.8rem; opacity: 0.7; }
+.audit-cell h4 {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--sable);
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.4;
+}
+.audit-cell ul { list-style: none; }
+.audit-cell ul li {
+  font-size: 0.82rem; color: var(--text-body);
+  padding: 0.48rem 0;
+  border-bottom: 1px solid rgba(232,224,208,0.04);
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  line-height: 1.5;
+}
+.audit-cell ul li::before { content: '/'; color: var(--text-muted); flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   LIVRABLES
+═══════════════════════════════════════════════════════════ */
+.livrables { background: var(--anthracite); }
+.livrable-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--line);
+  margin-top: 5rem;
+}
+.livrable-card {
+  background: var(--anthracite); padding: 3.5rem 2.8rem;
+  position: relative; transition: background 0.35s;
+}
+.livrable-card:hover { background: var(--charbon); }
+.livrable-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem; line-height: 1;
+  color: rgba(232,224,208,0.04); margin-bottom: 1.5rem;
+}
+.livrable-card h4 {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--sable); margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.livrable-card p { font-size: 0.88rem; line-height: 1.85; color: var(--text-body); }
+
+/* ═══════════════════════════════════════════════════════════
+   MÉTHODE — 4 étapes
+═══════════════════════════════════════════════════════════ */
+.methode { background: var(--charbon); }
+.steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--line);
+  margin-top: 5rem;
+}
+.step {
+  background: var(--charbon); padding: 3rem 2.2rem;
+  transition: background 0.35s;
+}
+.step:hover { background: var(--anthracite); }
+.step-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem; color: rgba(232,224,208,0.08);
+  line-height: 1; margin-bottom: 1.5rem;
+}
+.step h4 {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--sable); margin-bottom: 0.8rem;
+}
+.step p { font-size: 0.85rem; line-height: 1.85; color: var(--text-body); }
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE FULL BLEED 2
+═══════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════
+   PROFIL — split layout
+═══════════════════════════════════════════════════════════ */
+.profil { background: var(--noir); }
+.profil-split {
+  display: grid; grid-template-columns: 1fr 1.15fr;
+  gap: 0; margin-top: 5rem;
+  background: var(--line);
+}
+.profil-img-wrap {
+  overflow: hidden; position: relative; min-height: 560px;
+}
+.profil-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 20%;
+  filter: brightness(0.65) saturate(0.75);
+  transition: transform 1s ease;
+}
+.profil-img-wrap:hover img { transform: scale(1.03); }
+.profil-content {
+  background: var(--charbon); padding: 5rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.profil-content p {
+  font-size: 0.96rem; line-height: 1.95; color: var(--text-body); margin-top: 1.2rem;
+}
+.profil-content p strong { color: var(--sable); font-weight: 600; }
+.creds { margin-top: 3rem; border-top: 1px solid var(--line); }
+.cred {
+  display: flex; gap: 1.5rem; align-items: flex-start;
+  padding: 1.5rem 0; border-bottom: 1px solid rgba(232,224,208,0.05);
+}
+.cred-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--pierre); flex-shrink: 0; margin-top: 0.5rem;
+}
+.cred-text { font-size: 0.88rem; color: var(--text-body); line-height: 1.7; }
+.cred-text strong { color: rgba(232,224,208,0.75); font-weight: 600; display: block; margin-bottom: 0.15rem; }
+
+/* ═══════════════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════════════ */
+.contact { background: var(--anthracite); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 8rem; align-items: start;
+  margin-top: 5rem;
+}
+.contact-left p {
+  font-size: 0.96rem; line-height: 1.95; color: var(--text-body); margin-top: 2rem;
+}
+.contact-details {
+  margin-top: 3.5rem; border-top: 1px solid var(--line);
+}
+.cdetail {
+  display: flex; gap: 2rem; align-items: flex-start;
+  padding: 1.4rem 0; border-bottom: 1px solid var(--line);
+}
+.cdetail-label {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--pierre);
+  flex-shrink: 0; width: 72px; padding-top: 0.1rem;
+}
+.cdetail-val { font-size: 0.9rem; color: var(--text-body); line-height: 1.6; }
+
+/* Form */
+.form { display: flex; flex-direction: column; gap: 0; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
+.fg {
+  display: flex; flex-direction: column;
+  background: var(--charbon);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s;
+}
+.fg:focus-within { background: #1c1c1c; }
+.fg label {
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--pierre);
+  padding: 1.2rem 1.5rem 0.4rem;
+}
+.fg input, .fg select, .fg textarea {
+  background: transparent; border: none; outline: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem; font-weight: 300;
+  color: var(--sable); padding: 0 1.5rem 1.2rem;
+  width: 100%;
+}
+.fg select { cursor: pointer; }
+.fg select option { background: #1a1a1a; color: #e8e0d0; }
+.fg textarea { resize: none; min-height: 130px; }
+.fg-full { grid-column: 1/-1; }
+
+.form-submit {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--noir); background: var(--sable);
+  border: none; cursor: pointer;
+  padding: 1.3rem 3rem; align-self: flex-start;
+  margin-top: 2rem;
+  transition: background 0.3s, transform 0.2s;
+}
+.form-submit:hover { background: var(--blanc); transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
+footer {
+  background: var(--charbon);
+  border-top: 1px solid var(--line);
+  padding: 3rem 4rem;
+}
+.footer-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 2rem;
+}
+.footer-logo {
+  display: flex; align-items: baseline; gap: 0;
+}
+.footer-tm {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; letter-spacing: 0.06em; color: var(--sable);
+}
+.footer-sep { width: 1px; height: 18px; background: var(--pierre); margin: 0 0.7rem; align-self: center; opacity: 0.4; }
+.footer-perf {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--pierre);
+}
+.footer-copy { font-size: 0.72rem; color: var(--pierre); font-style: italic; }
+.footer-links { display: flex; gap: 2.5rem; }
+.footer-links a {
+  font-size: 0.63rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--pierre);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--sable); }
+
+/* ═══════════════════════════════════════════════════════════
+   REVEAL SCROLL
+═══════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.12s; }
+.d2 { transition-delay: 0.24s; }
+.d3 { transition-delay: 0.36s; }
+.d4 { transition-delay: 0.48s; }
+
+/* ═══════════════════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .vision-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .vision-img { height: 420px; }
+  .audit-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .profil-split { grid-template-columns: 1fr; }
+  .profil-img-wrap { min-height: 400px; }
+  .phases { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .statement-inner { flex-direction: column; gap: 3rem; }
+}
+@media (max-width: 768px) {
+  #nav { padding: 1.2rem 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .section { padding: 5rem 1.5rem; }
+  .hero-content { padding: 0 1.5rem 4rem; }
+  .statement { padding: 3rem 1.5rem; }
+  .statement-stats { gap: 2rem; flex-wrap: wrap; }
+  .audit-grid, .steps, .livrable-grid { grid-template-columns: 1fr; }
+  .full-bleed { height: 45vh; }
+  .full-bleed-overlay { padding: 0 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; gap: 1.5rem; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .hero-scroll-hint { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <span class="logo-tm">TM</span>
+    <span class="logo-sep"></span>
+    <span class="logo-wordmark">
+      <span class="logo-perf">Performance</span>
+      <span class="logo-sub">Football Consulting</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#audit">Audit</a></li>
+    <li><a href="#methode">Méthode</a></li>
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Engager une mission</a>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="assets/images/terrain-hero.jpg" alt="Terrain de football professionnel" />
+  </div>
+  <div class="hero-gradient"></div>
+  <div class="hero-grain"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Football Consulting — Fédérations &amp; Clubs</div>
+    <h1 class="hero-h1">
+      Restructurer.<br>
+      Élever.<br>
+      <span class="outline">Dominer.</span>
+    </h1>
+    <p class="hero-sub">
+      TM Performance accompagne les fédérations nationales et les clubs professionnels qui veulent transformer leur organisation sportive pour atteindre — et tenir — le plus haut niveau.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Demander un audit</a>
+      <a href="#services" class="btn-secondary">Découvrir l'approche</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════ STATEMENT ══════════ -->
+<div class="statement">
+  <div class="statement-inner">
+    <div class="statement-text reveal">
+      Le football de haut niveau<br>
+      est une science.<br>
+      <span class="dim">Traitez-le comme telle.</span>
+    </div>
+    <div class="statement-stats reveal d2">
+      <div class="sstat">
+        <div class="sstat-n">360°</div>
+        <div class="sstat-l">Vision intégrée de la performance</div>
+      </div>
+      <div class="sstat">
+        <div class="sstat-n">Pro</div>
+        <div class="sstat-l">Expérience Ligue 1 &amp; int'l</div>
+      </div>
+      <div class="sstat">
+        <div class="sstat-n">4</div>
+        <div class="sstat-l">Cellules auditées en profondeur</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TARGETS MARQUEE ══════════ -->
+<div class="targets-wrap">
+  <div class="targets-track">
+    <div class="t-item"><span class="t-flag">🇨🇩</span><span class="t-name"><strong>Féd. Congolaise</strong>CAN · Coupe du Monde</span></div>
+    <div class="t-item"><span class="t-flag">🇬🇳</span><span class="t-name"><strong>Féd. Guinéenne</strong>Développement structurel</span></div>
+    <div class="t-item"><span class="t-flag">🇫🇷</span><span class="t-name"><strong>Clubs Ligue 2</strong>Restructuration performance</span></div>
+    <div class="t-item"><span class="t-flag">🇫🇷</span><span class="t-name"><strong>National · Pro 2</strong>Professionnalisation</span></div>
+    <div class="t-item"><span class="t-flag">🌍</span><span class="t-name"><strong>Clubs Étrangers</strong>Europe &amp; Afrique</span></div>
+    <div class="t-item"><span class="t-flag">🏟</span><span class="t-name"><strong>Fédérations</strong>Préparation compétitions</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="t-item"><span class="t-flag">🇨🇩</span><span class="t-name"><strong>Féd. Congolaise</strong>CAN · Coupe du Monde</span></div>
+    <div class="t-item"><span class="t-flag">🇬🇳</span><span class="t-name"><strong>Féd. Guinéenne</strong>Développement structurel</span></div>
+    <div class="t-item"><span class="t-flag">🇫🇷</span><span class="t-name"><strong>Clubs Ligue 2</strong>Restructuration performance</span></div>
+    <div class="t-item"><span class="t-flag">🇫🇷</span><span class="t-name"><strong>National · Pro 2</strong>Professionnalisation</span></div>
+    <div class="t-item"><span class="t-flag">🌍</span><span class="t-name"><strong>Clubs Étrangers</strong>Europe &amp; Afrique</span></div>
+    <div class="t-item"><span class="t-flag">🏟</span><span class="t-name"><strong>Fédérations</strong>Préparation compétitions</span></div>
+  </div>
+</div>
+
+<!-- ══════════ VISION ══════════ -->
+<section class="vision section" id="vision">
+  <div class="section-inner">
+    <div class="vision-grid">
+      <div class="vision-text">
+        <div class="eyebrow reveal">Notre positionnement</div>
+        <h2 class="title-xl reveal d1">
+          La clarté<br>
+          <span class="dim">avant tout.</span>
+        </h2>
+        <p class="reveal d2">
+          Les clubs et fédérations qui progressent durablement <strong>ne le doivent pas au hasard.</strong> Ils ont construit des systèmes cohérents — où la cellule médicale dialogue avec le staff technique, où les données éclairent les décisions, où chaque département converge vers un même objectif stratégique.
+        </p>
+        <p class="reveal d3">
+          TM Performance intervient lorsque <strong>cette cohérence est absente, partielle ou à construire.</strong> Notre mission : comprendre votre réalité depuis l'intérieur, analyser sans complaisance, puis vous proposer une feuille de route concrète — calibrée sur vos ambitions et réaliste face à vos moyens.
+        </p>
+      </div>
+      <div class="vision-img reveal d2">
+        <img src="assets/images/terrain-sunset.jpg" alt="Terrain d'entraînement au coucher du soleil" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SERVICES ══════════ -->
+<section class="services section" id="services">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Notre intervention</div>
+    <h2 class="title-xl reveal d1">
+      Une mission en<br>
+      <span class="dim">deux phases.</span>
+    </h2>
+    <div class="phases">
+      <div class="phase reveal">
+        <div class="phase-ghost-n">01</div>
+        <div class="phase-tag">Phase 1 — Diagnostic</div>
+        <h3>L'Audit Stratégique<br>&amp; Opérationnel</h3>
+        <p>
+          Une immersion totale dans votre organisation pour cartographier l'existant avec précision. Nous analysons chaque cellule — performance, médicale, technique, scouting, data — et les mettons en regard avec vos objectifs réels. L'audit produit un état des lieux exhaustif et objectif, sans complaisance.
+        </p>
+        <div class="tags">
+          <span class="tag">Performance</span>
+          <span class="tag">Médical</span>
+          <span class="tag">Technique</span>
+          <span class="tag">Scouting</span>
+          <span class="tag">Data</span>
+          <span class="tag">Gouvernance</span>
+          <span class="tag">Infrastructures</span>
+        </div>
+      </div>
+      <div class="phase reveal d2">
+        <div class="phase-ghost-n">02</div>
+        <div class="phase-tag">Phase 2 — Transformation</div>
+        <h3>Solutions Concrètes<br>&amp; Accompagnement</h3>
+        <p>
+          Sur la base de l'audit, nous construisons avec vous un plan d'action priorisé et réaliste. Pas de modèles théoriques importés — chaque solution est conçue en fonction de vos ressources, de votre contexte et de vos échéances. Nous pouvons accompagner la mise en œuvre dans la durée.
+        </p>
+        <div class="tags">
+          <span class="tag">Plan d'action</span>
+          <span class="tag">Recrutement</span>
+          <span class="tag">Formation staffs</span>
+          <span class="tag">Outils de suivi</span>
+          <span class="tag">Restructuration</span>
+          <span class="tag">Suivi trimestriel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FULL BLEED 1 ══════════ -->
+<div class="full-bleed">
+  <img src="assets/images/seance-terrain.jpg" alt="Séance d'entraînement terrain" />
+  <div class="full-bleed-overlay">
+    <div class="full-bleed-quote">
+      Ce que vous ne mesurez pas,<br>
+      <span class="dim">vous ne pouvez pas<br>l'améliorer.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ AUDIT ══════════ -->
+<section class="audit section" id="audit">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Ce que nous analysons</div>
+    <h2 class="title-xl reveal d1">
+      Les quatre cellules<br>
+      <span class="dim">de l'audit.</span>
+    </h2>
+    <div class="audit-grid">
+      <div class="audit-cell reveal">
+        <div class="audit-cell-icon">⚡</div>
+        <h4>Performance &amp; Préparation Physique</h4>
+        <ul>
+          <li>Organisation et méthodologie du staff PPG</li>
+          <li>Outils de suivi de la charge</li>
+          <li>Protocoles de récupération</li>
+          <li>Individualisation des programmes</li>
+          <li>Préparation spécifique compétitions</li>
+          <li>Interface physique / médical</li>
+        </ul>
+      </div>
+      <div class="audit-cell reveal d1">
+        <div class="audit-cell-icon">🏥</div>
+        <h4>Cellule Médicale &amp; Santé</h4>
+        <ul>
+          <li>Composition et organisation médicale</li>
+          <li>Protocoles de prise en charge</li>
+          <li>Return-to-play et suivi longitudinal</li>
+          <li>Prévention et dépistage</li>
+          <li>Nutrition et récupération</li>
+          <li>Intégration multi-staff</li>
+        </ul>
+      </div>
+      <div class="audit-cell reveal d2">
+        <div class="audit-cell-icon">🎯</div>
+        <h4>Cellule Technique &amp; Tactique</h4>
+        <ul>
+          <li>Organisation du staff technique</li>
+          <li>Modèle de jeu et philosophie</li>
+          <li>Planification des entraînements</li>
+          <li>Développement des joueurs</li>
+          <li>Communication vidéo et tactique</li>
+          <li>Cohérence jeu / recrutement</li>
+        </ul>
+      </div>
+      <div class="audit-cell reveal d3">
+        <div class="audit-cell-icon">📊</div>
+        <h4>Scouting, Data &amp; Recrutement</h4>
+        <ul>
+          <li>Organisation de la cellule recrutement</li>
+          <li>Critères et processus de détection</li>
+          <li>Outils data et analytics</li>
+          <li>Intégration data / staff technique</li>
+          <li>Profils ciblés vs modèle de jeu</li>
+          <li>Budget et ROI du recrutement</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LIVRABLES ══════════ -->
+<section class="livrables section" id="livrables">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Ce que vous recevez</div>
+    <h2 class="title-xl reveal d1">
+      Des livrables<br>
+      <span class="dim">actionnables.</span>
+    </h2>
+    <div class="livrable-grid">
+      <div class="livrable-card reveal">
+        <div class="livrable-n">01</div>
+        <h4>Rapport d'Audit Complet</h4>
+        <p>Cartographie exhaustive de l'organisation actuelle, points forts, points critiques, benchmarks avec clubs de référence au même niveau et au niveau supérieur.</p>
+      </div>
+      <div class="livrable-card reveal d1">
+        <div class="livrable-n">02</div>
+        <h4>Matrice de Priorisation</h4>
+        <p>Classement des actions par impact / faisabilité / urgence. Un outil de décision immédiatement opérationnel pour le board et la direction sportive.</p>
+      </div>
+      <div class="livrable-card reveal d2">
+        <div class="livrable-n">03</div>
+        <h4>Plan d'Action 6–18 mois</h4>
+        <p>Feuille de route avec jalons, responsables, indicateurs de succès — adapté à vos contraintes budgétaires et à votre calendrier compétitif.</p>
+      </div>
+      <div class="livrable-card reveal">
+        <div class="livrable-n">04</div>
+        <h4>Recommandations RH &amp; Profils</h4>
+        <p>Postes à créer, profils à recruter, organigrammes optimaux. Appui possible sur le recrutement via le réseau TM Performance.</p>
+      </div>
+      <div class="livrable-card reveal d1">
+        <div class="livrable-n">05</div>
+        <h4>Référentiel Performance Club</h4>
+        <p>Document fondateur définissant vos standards internes : critères physiques, protocoles médicaux, indicateurs data, philosophie de jeu documentée.</p>
+      </div>
+      <div class="livrable-card reveal d2">
+        <div class="livrable-n">06</div>
+        <h4>Accompagnement &amp; Suivi</h4>
+        <p>Points trimestriels, ajustements du plan, formation continue des staffs, présence lors de moments clés — stages, compétitions, fenêtres de transferts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MÉTHODE ══════════ -->
+<section class="methode section" id="methode">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Notre approche</div>
+    <h2 class="title-xl reveal d1">
+      Terrain.<br>
+      <span class="dim">Pas théorie.</span>
+    </h2>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n">01</div>
+        <h4>Cadrage stratégique</h4>
+        <p>Entretiens avec le board, la direction sportive et les propriétaires pour clarifier les ambitions réelles, les contraintes et les échéances prioritaires.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-n">02</div>
+        <h4>Immersion opérationnelle</h4>
+        <p>Présence sur site, observation des entraînements, entretiens avec chaque département, analyse des outils et données existants. 5 à 15 jours selon la structure.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-n">03</div>
+        <h4>Analyse &amp; benchmarking</h4>
+        <p>Traitement des observations, comparaison aux meilleures pratiques du niveau visé, identification des leviers prioritaires et des dépendances critiques.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-n">04</div>
+        <h4>Restitution &amp; co-construction</h4>
+        <p>Présentation au board et aux équipes concernées. Le plan d'action est co-construit — vous restez aux commandes, nous apportons la vision et l'expertise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FULL BLEED 2 ══════════ -->
+<div class="full-bleed">
+  <img src="assets/images/technique.jpg" alt="Travail technique individuel" />
+  <div class="full-bleed-overlay">
+    <div class="full-bleed-quote">
+      Votre organisation<br>
+      est votre premier<br>
+      <span class="dim">avantage compétitif.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PROFIL ══════════ -->
+<section class="profil section" id="profil">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Pourquoi TM Performance</div>
+    <h2 class="title-xl reveal d1">
+      Forgée<br>
+      <span class="dim">de l'intérieur.</span>
+    </h2>
+  </div>
+  <div class="profil-split">
+    <div class="profil-img-wrap">
+      <img src="assets/images/seance-terrain.jpg" alt="Coaching sur le terrain" />
+    </div>
+    <div class="profil-content">
+      <p class="reveal">
+        TM Performance n'est pas un cabinet de conseil généraliste ayant découvert le football. Notre expertise est construite <strong>depuis l'intérieur</strong> — des terrains d'entraînement professionnels, des vestiaires de Ligue 1, des staffs de sélections nationales.
+      </p>
+      <p class="reveal d1">
+        Cette expérience de praticien donne une capacité rare : comprendre les réalités opérationnelles que les consultants de bureau ne voient jamais, et identifier <strong>les vrais blocages</strong> au-delà des organigrammes officiels.
+      </p>
+      <div class="creds">
+        <div class="cred reveal">
+          <div class="cred-dot"></div>
+          <div class="cred-text">
+            <strong>Expérience Ligue 1 &amp; football professionnel</strong>
+            Préparateur physique et coach auprès de joueurs professionnels sous contrat, dont des internationaux — expérience de l'intérieur du haut niveau français.
+          </div>
+        </div>
+        <div class="cred reveal d1">
+          <div class="cred-dot"></div>
+          <div class="cred-text">
+            <strong>Réseau fédéral &amp; international</strong>
+            Contacts établis avec des fédérations africaines (Congo, Guinée) et des agents représentant des joueurs évoluant aux plus hauts niveaux européens.
+          </div>
+        </div>
+        <div class="cred reveal d2">
+          <div class="cred-dot"></div>
+          <div class="cred-text">
+            <strong>Vision 360° — performance &amp; accompagnement</strong>
+            Approche intégrée couvrant préparation physique, préparation mentale, récupération, nutrition et développement tactique individuel.
+          </div>
+        </div>
+        <div class="cred reveal d3">
+          <div class="cred-dot"></div>
+          <div class="cred-text">
+            <strong>Structure professionnelle dédiée</strong>
+            TM Performance opère dans un cadre juridique et contractuel solide, garantissant confidentialité, rigueur et engagement sur chaque mission.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="contact section" id="contact">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Engager une mission</div>
+    <h2 class="title-xl reveal d1">
+      Parlons de<br>
+      <span class="dim">votre organisation.</span>
+    </h2>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="reveal d1">
+          Chaque mission commence par un échange confidentiel de 30 à 45 minutes. L'objectif : comprendre votre contexte, vos ambitions, et évaluer ensemble si une collaboration a du sens. Aucun engagement de votre côté.
+        </p>
+        <div class="contact-details reveal d2">
+          <div class="cdetail">
+            <span class="cdetail-label">Email</span>
+            <span class="cdetail-val">contact@tm-performance.com</span>
+          </div>
+          <div class="cdetail">
+            <span class="cdetail-label">Zone</span>
+            <span class="cdetail-val">France, Europe &amp; Afrique — déplacements inclus</span>
+          </div>
+          <div class="cdetail">
+            <span class="cdetail-label">NDA</span>
+            <span class="cdetail-val">Disponible avant tout échange sensible</span>
+          </div>
+          <div class="cdetail">
+            <span class="cdetail-label">Langues</span>
+            <span class="cdetail-val">Français — English available</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal d2">
+        <div class="form">
+          <div class="form-row">
+            <div class="fg">
+              <label>Prénom &amp; Nom</label>
+              <input type="text" placeholder="Votre nom" />
+            </div>
+            <div class="fg">
+              <label>Fonction</label>
+              <input type="text" placeholder="Directeur sportif, Président…" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="fg">
+              <label>Organisation</label>
+              <input type="text" placeholder="Club / Fédération" />
+            </div>
+            <div class="fg">
+              <label>Type de structure</label>
+              <select>
+                <option value="">Sélectionner…</option>
+                <option>Fédération nationale</option>
+                <option>Club Ligue 2</option>
+                <option>Club National / Pro 2</option>
+                <option>Club étranger — Europe</option>
+                <option>Club étranger — Afrique</option>
+                <option>Autre</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="fg fg-full">
+              <label>Email professionnel</label>
+              <input type="email" placeholder="votre@email.com" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="fg fg-full">
+              <label>Contexte &amp; objectifs</label>
+              <textarea placeholder="Décrivez brièvement votre situation : ambitions, problématiques identifiées, échéances…"></textarea>
+            </div>
+          </div>
+          <button class="form-submit" id="submit-btn">
+            Demander un premier échange →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span class="footer-tm">TM</span>
+      <span class="footer-sep"></span>
+      <span class="footer-perf">Performance</span>
+    </div>
+    <div class="footer-copy">Football Consulting — Fédérations &amp; Clubs Professionnels</div>
+    <nav class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#audit">Audit</a>
+      <a href="#methode">Méthode</a>
+      <a href="#profil">Profil</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ══════════ JS ══════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => revealObs.observe(el));
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const activeObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(l => {
+          l.style.color = l.getAttribute('href') === '#' + id
+            ? 'var(--sable)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => activeObs.observe(s));
+
+  // Form submit feedback
+  const btn = document.getElementById('submit-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const orig = btn.textContent;
+      btn.textContent = 'Message envoyé ✓';
+      btn.style.background = '#2d4a1a';
+      btn.style.color = 'var(--sable)';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 3500);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
